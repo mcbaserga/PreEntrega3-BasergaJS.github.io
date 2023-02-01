@@ -62,6 +62,12 @@
     padding: 2rem;
 }
 
+.divBtn{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
 
 /* PRODUCTOS */
 
@@ -73,7 +79,7 @@
     padding-bottom: 0;
 }
 
-.shopContent{
+.tienda{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -114,14 +120,8 @@
     font-size: 2rem;
 }
 
-.btn{
-    position: relative;
-    text-align: center;
-}
-
-
 /* MODAL CONTAINER */
-.modal-container {
+.modalContainer {
     width: 80%;
     margin: 0 10%;
     max-height: 88vh;
@@ -139,7 +139,7 @@
 }
 
 
-.modal-header{
+.modalHeader{
     display: flex;
     justify-content: space-around;
     background-color: #fff;
@@ -147,12 +147,12 @@
     width: 100%;
 }
 
-.modal-header-title{
+.tituloModal{
     justify-self: start;
     padding: 1rem;
 }
 
-.modal-header-button{
+.botonHeader{
     cursor: pointer;
     padding: 2rem ;
 } 
@@ -161,7 +161,7 @@
     cursor: pointer;
 } 
 
-.modal-container > .modal-content{
+.modalContainer > .modal-content{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -170,12 +170,12 @@
     margin:10px;
 }
 
-.modal-container > div > img{
+.modalContainer > div > img{
     height: 120px;
     width: 120px;
 }
 
-.total-content{
+.totalTexto{
     font-size: 1rem;
     padding: 1.5rem;
     text-align: center;
@@ -201,5 +201,3 @@
     color: white;
     line-height: 0.5rem;
 }
-
-

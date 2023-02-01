@@ -1,33 +1,32 @@
-const shopContent = document.getElementById("shopContent")
+const tienda = document.getElementById("tienda")
 const verCarrito = document.getElementById("verCarrito")
-const modalContainer = document.getElementById("modal-container")
+const modalContainer = document.getElementById("modalContainer")
 const cantidadCarrito = document.getElementById("cantidadCarrito")
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 productos.forEach((product)=> {
-    let content = document.createElement("div");
-    content.className = "cardsProductos"
-    content.innerHTML = `
+    let fichas = document.createElement("div");
+    fichas.className = "cardsProductos"
+    fichas.innerHTML = `
     <div class="card">
     <img src="${product.img}" class="card-img-top" style="height: 100%">
     <div class="card-body text-center">
         <h5 class="card-title">${product.nombre} - ${product.peso} g</h5>
         <p class="card-text">${product.notas}</p>
-        <p class="card-text">${product.precio} $</p>
+        <p class="card-text">$${product.precio}</p>
     </div>
     </div>
     `;
 
-    shopContent.append(content);
+    tienda.append(fichas);
 
-    let comprar = document.createElement("button")
+    let comprar = document.createElement("div")
+    comprar.className = "divBtn"
     comprar.innerHTML = `
-    <btn class="btn" id="btn" style="background-color: #F21D56; color:white">Lo quiero</btn>
+    <btn class= "btn" id="btn" style="background-color: #F21D56; color:white;">Lo quiero</btn>
     `;
-    comprar.className = "btn"
-    
-    content.append(comprar)
+    fichas.append(comprar)
 
 
     comprar.addEventListener("click", () => {
@@ -47,8 +46,6 @@ productos.forEach((product)=> {
         precio: product.precio,
         cantidad: product.cantidad,
     })
-        console.log(carrito)
-        console.log(carrito.length)
         carritoCounter();
         saveLocal();
     }
@@ -58,4 +55,3 @@ productos.forEach((product)=> {
 const saveLocal = () => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
-

@@ -1,16 +1,16 @@
-const pintarCarrito = () => {
+const renderizarCarrito = () => {
     modalContainer.innerHTML = "";
     modalContainer.style.display = "flex";
     const modalHeader = document.createElement("div")
-    modalHeader.className = "modal-header"
+    modalHeader.className = "modalHeader"
     modalHeader.innerHTML= `
-    <h2 class= "modal-header-title">Mi Carrito de Compras</h2>
+    <h2 class= "tituloModal">Mi Carrito de Compras</h2>
     `;
     modalContainer.append(modalHeader);
 
     const modalButton = document.createElement("h2")
     modalButton.innerText = "x"
-    modalButton.className = "modal-header-button"
+    modalButton.className = "botonHeader"
 
     modalButton.addEventListener("click", () => {
         modalContainer.style.display = "none";
@@ -19,38 +19,38 @@ const pintarCarrito = () => {
     modalHeader.append(modalButton);
 
     carrito.forEach((product) => {
-    let carritoContent = document.createElement("div")
-    carritoContent.className = "modal-content"
-    carritoContent.innerHTML = `
+    let contenido = document.createElement("div")
+    contenido.className = "modal-content"
+    contenido.innerHTML = `
         <img src="${product.img}">
         <p>${product.nombre}</p>
-        <p>${product.precio} $</p>
+        <p>$${product.precio}</p>
         <p class = "restar"> - </p>
         <p>${product.cantidad}</p>
         <p class = "sumar"> + </p>
-        <p>Total: ${product.cantidad * product.precio} $</p>
+        <p>Total: $${product.cantidad * product.precio}</p>
         <p class="delete-product"> X </p>
     `;
     
-    modalContainer.append(carritoContent)
+    modalContainer.append(contenido)
     
-    let sumar = carritoContent.querySelector(".sumar")
+    let sumar = contenido.querySelector(".sumar")
     sumar.addEventListener("click", () => {
         product.cantidad++
         saveLocal()
-        pintarCarrito()
+        renderizarCarrito()
     })
 
-    let restar = carritoContent.querySelector(".restar")
+    let restar = contenido.querySelector(".restar")
     restar.addEventListener("click", ()=> {
         if (product.cantidad !== 1) {
         product.cantidad--
     }
         saveLocal()
-        pintarCarrito()
+        renderizarCarrito()
     })
     
-    let eliminar = carritoContent.querySelector(".delete-product");
+    let eliminar = contenido.querySelector(".delete-product");
 
     eliminar.addEventListener("click", () => {
         eliminarProducto(product.id);
@@ -59,13 +59,13 @@ const pintarCarrito = () => {
 
     const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0)
 
-    const totalBuying = document.createElement("div")
-    totalBuying.className = "total-content"
-    totalBuying.innerHTML = `Total a pagar: ${total} $`
-    modalContainer.append(totalBuying)
+    const totalCarrito = document.createElement("div")
+    totalCarrito.className = "totalTexto"
+    totalCarrito.innerHTML = `Total a pagar: $${total}`
+    modalContainer.append(totalCarrito)
 }
 
-verCarrito.addEventListener("click", pintarCarrito)
+verCarrito.addEventListener("click", renderizarCarrito)
 
 const eliminarProducto = (id) => {
     const foundId = carrito.find((element) => element.id === id)
@@ -75,7 +75,7 @@ const eliminarProducto = (id) => {
     })
     carritoCounter()
     saveLocal()
-    pintarCarrito()
+    renderizarCarrito()
 }
 
 const carritoCounter = () => {
