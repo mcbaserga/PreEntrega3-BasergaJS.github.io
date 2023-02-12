@@ -68,6 +68,14 @@
     padding: 1rem;
 }
 
+.finalizarCompra{
+    background-color: #F21D56;
+    border:none;
+    padding: 0.7rem;
+    margin: 1rem;
+    color:white;
+    border-radius: 10px;
+}
 
 /* PRODUCTOS */
 
@@ -166,8 +174,8 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: 70%;
-    margin:10px;
+    width: 80%;
+    margin:0.5rem
 }
 
 .modalContainer > div > img{
@@ -181,6 +189,7 @@
     text-align: center;
     padding-top: 1rem;
 }
+
 
 
 /* FOOTER */

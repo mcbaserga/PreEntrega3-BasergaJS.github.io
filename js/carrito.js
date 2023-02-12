@@ -63,6 +63,39 @@ const renderizarCarrito = () => {
     totalCarrito.className = "totalTexto"
     totalCarrito.innerHTML = `Total a pagar: $${total}`
     modalContainer.append(totalCarrito)
+
+    const finalizarCompraButton = document.createElement("button")
+    finalizarCompraButton.className = "finalizarCompra"
+    finalizarCompraButton.innerHTML = `<btn class="finalizarCompra">Finalizar compra</btn>`
+    modalContainer.append(finalizarCompraButton)
+
+        finalizarCompraButton.addEventListener(
+            "click", () => {
+                Swal.fire({
+                    title: "¿Desea confirmar la compra? El total a pagar es: $" + total,
+                    text: "¡Gracias por elegir Kaffee!",
+                    icon: "success",
+                    showCancelButton: true,
+                    cancelButtonText: "Seguir comprando",
+                    confirmButtonText: "Confirmar compra",
+                    confirmButtonColor: "#F21D56",
+                }) .then((result) => {
+                    if(result.isConfirmed){
+                        const procesandoCompra = new Promise((resolve, reject) => {
+                            setTimeout(()=>{
+                                Swal.fire("¡Tu compra ha sido realizada con éxito!")
+                    }, 1500) 
+                    Swal.fire({
+                        title:"Procesando compra, espere unos segundos...",
+                        showConfirmButton: false,
+                    })
+                }) .catch((error)=>{
+                    Swal.fire("Ups, algo salió mal")
+                    console.log(error)
+                })
+            }
+        })
+    })
 }
 
 verCarrito.addEventListener("click", renderizarCarrito)
